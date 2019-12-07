@@ -1,0 +1,14 @@
+{
+  "name": "swarmtech/auth0",
+  "description": "Swarmtech Auth0",
+  "homepage": "https://www.swarmtech.fr",
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Swarmtech\\Auth0\\": "src/"
+    }
+  }
+}
