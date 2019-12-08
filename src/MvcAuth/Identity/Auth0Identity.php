@@ -11,8 +11,6 @@ use ZF\MvcAuth\Identity\IdentityInterface;
 
 final class Auth0Identity extends Role implements IdentityInterface
 {
-    protected static $identity = 'auth0';
-
     /**
      * @var
      */
@@ -20,18 +18,19 @@ final class Auth0Identity extends Role implements IdentityInterface
 
     /**
      * @param $decodedToken
+     * @param $roleName
      */
-    public function __construct($decodedToken)
+    public function __construct($decodedToken, $roleName = 'default')
     {
-        var_dump($decodedToken); exit;
         $this->decodedToken = $decodedToken;
+        $this->name = $roleName;
 
-        parent::__construct(self::$identity);
+        parent::__construct($roleName);
     }
 
     public function getRoleId(): string
     {
-        return static::$identity;
+        return $this->name;
     }
 
     public function getAuthenticationIdentity(): string
