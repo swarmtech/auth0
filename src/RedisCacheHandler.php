@@ -22,7 +22,13 @@ final class RedisCacheHandler implements CacheHandler
 
     public function get($key)
     {
-        return $this->client->get($key);
+        $data = $this->client->get($key);
+
+        if (! isset($data)) {
+            return null;
+        }
+
+        return unserialize(base64_decode($data));
     }
 
     public function delete($key)
@@ -32,6 +38,8 @@ final class RedisCacheHandler implements CacheHandler
 
     public function set($key, $value)
     {
+        $value = base64_encode(serialize($value));
+
         $this->client->set($key, $value);
     }
 }
