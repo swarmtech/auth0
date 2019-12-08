@@ -1,7 +1,7 @@
 {
   "name": "swarmtech/auth0",
   "description": "Swarmtech Auth0",
-  "homepage": "https://www.swarmtech.fr",
+  "homepage": "https://www.github.com/swarmtech/auth0",
   "license": "MIT",
   "authors": [
     {
@@ -11,24 +11,15 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
-    "ext-json": "*",
-    "auth0/auth0-php": "5.6.0",
-    "container-interop/container-interop": "^1.2",
-    "predis/predis": "^1.1",
-    "psr/container": "^1.0",
-    "zendframework/zend-http": "^2.11",
-    "zendframework/zend-mvc": "^3.1",
-    "zendframework/zend-permissions-acl": "^2.7",
-    "zendframework/zend-permissions-rbac": "^3.0",
-    "zendframework/zend-uri": "^2.7",
-    "zendframework/zend-validator": "^2.12",
-    "zendframework/zend-servicemanager": "^3.4",
+    "auth0/auth0-php": "^5.6",
     "zfcampus/zf-mvc-auth": "^1.5"
   },
   "autoload": {
     "psr-4": {
       "Swarmtech\\Auth0\\": "src/"
     }
+  },
+  "suggest": {
+    "predis/predis": "^1.1, to use redis as a cache for auth0"
   }
 }
