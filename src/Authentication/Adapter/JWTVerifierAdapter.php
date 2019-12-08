@@ -121,7 +121,7 @@ class JWTVerifierAdapter implements AdapterInterface
             $decodedToken->name,
             $decodedToken->picture,
             $decodedToken->nickname,
-            $locale,$decodedToken->locale,
+            $locale,
             $givenName,
             $email
         );
