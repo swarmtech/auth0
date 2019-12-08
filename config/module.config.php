@@ -6,6 +6,25 @@ namespace Swarmtech\Auth0;
 
 use Auth0\SDK\API\Authentication;
 use Auth0\SDK\API\Helpers\ApiClient;
+use Auth0\SDK\API\Management\Blacklists;
+use Auth0\SDK\API\Management\ClientGrants;
+use Auth0\SDK\API\Management\Clients;
+use Auth0\SDK\API\Management\Connections;
+use Auth0\SDK\API\Management\DeviceCredentials;
+use Auth0\SDK\API\Management\Emails;
+use Auth0\SDK\API\Management\EmailTemplates;
+use Auth0\SDK\API\Management\Grants;
+use Auth0\SDK\API\Management\Jobs;
+use Auth0\SDK\API\Management\Logs;
+use Auth0\SDK\API\Management\ResourceServers;
+use Auth0\SDK\API\Management\Roles;
+use Auth0\SDK\API\Management\Rules;
+use Auth0\SDK\API\Management\Stats;
+use Auth0\SDK\API\Management\Tenants;
+use Auth0\SDK\API\Management\Tickets;
+use Auth0\SDK\API\Management\UserBlocks;
+use Auth0\SDK\API\Management\Users;
+use Auth0\SDK\API\Management\UsersByEmail;
 use Auth0\SDK\Helpers\Cache\CacheHandler;
 use Auth0\SDK\Helpers\JWKFetcher;
 use Auth0\SDK\JWTVerifier;
@@ -16,6 +35,7 @@ use Swarmtech\Auth0\Factory\CacheHandlerFactory;
 use Swarmtech\Auth0\Factory\JWTVerifierFactory;
 use Swarmtech\Auth0\Factory\RedisClientFactory;
 use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
+use Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
 return [
     'service_manager' => [
@@ -27,6 +47,27 @@ return [
             /** Auth0 JWT  */
             JWTVerifier::class => JWTVerifierFactory::class,
             JWKFetcher::class => ConfigAbstractFactory::class,
+
+            /** Auth0 Resource */
+            Blacklists::class => ReflectionBasedAbstractFactory::class,
+            ClientGrants::class => ReflectionBasedAbstractFactory::class,
+            Clients::class => ReflectionBasedAbstractFactory::class,
+            Connections::class => ReflectionBasedAbstractFactory::class,
+            DeviceCredentials::class => ReflectionBasedAbstractFactory::class,
+            Emails::class => ReflectionBasedAbstractFactory::class,
+            EmailTemplates::class => ReflectionBasedAbstractFactory::class,
+            Grants::class => ReflectionBasedAbstractFactory::class,
+            Jobs::class => ReflectionBasedAbstractFactory::class,
+            Logs::class => ReflectionBasedAbstractFactory::class,
+            ResourceServers::class => ReflectionBasedAbstractFactory::class,
+            Roles::class => ReflectionBasedAbstractFactory::class,
+            Rules::class => ReflectionBasedAbstractFactory::class,
+            Stats::class => ReflectionBasedAbstractFactory::class,
+            Tenants::class => ReflectionBasedAbstractFactory::class,
+            Tickets::class => ReflectionBasedAbstractFactory::class,
+            UserBlocks::class => ReflectionBasedAbstractFactory::class,
+            Users::class => ReflectionBasedAbstractFactory::class,
+            UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
             /** Auth0 CacheHandler */
             CacheHandler::class => CacheHandlerFactory::class,
