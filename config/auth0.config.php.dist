@@ -7,6 +7,49 @@ declare(strict_types=1);
 return [
     'auth0' => [
         /**
+         * Client configuration to access to auth0 api. This API is use to get data like users, roles, etc..
+         * The domain match a like
+         */
+        'client' => [
+             /**
+              * The domain match a format like https://dev-a-jhgfd4.eu.auth0.com/api/v2/
+              */
+            'domain' => 'https://your-tenant-in-auth0.eu.auth0.com/api/v2/',
+        ],
+        /**
+         * Configuration to authenticate to auth0 with your application
+         */
+        'authentication' => [
+            /**
+             * Domain on which authenticate. Format must be like dev-a-trehg4.eu.auth0.com
+             */
+            'domain' => 'your-auth0-tenant.eu.auth0.com',
+            /**
+             * The client id of this application available on auth0
+             */
+            'client_id' => 'yeQPddExempleExempleExempleExemple',
+            /**
+             * Client secret of this application available on auth0
+             */
+            'client_secret' => 'TWpGBy1op68wdrExempleExempleExempleExempleExempleExempleExempleExempleExemple',
+        ],
+        'jwt-verifier' => [
+            /**
+             * Valid audience is the client IDs of your apps about to consume your application
+             */
+            'valid_audiences' => [
+                'ClbLQoTtQmBCYFfBdnfzcqExemple'
+            ],
+            /**
+             * Authorized issuer is the application which you authorized to issue JWT
+             * On auth0 that the name of your tenant something like
+             * https://dev-a-poifd1.eu.auth0.com/
+             */
+            'authorized_issuers' => [
+                'https://your-auth0-tenant.eu.auth0.com/'
+            ]
+        ],
+        /**
          * Handler must be the fqcn of the class to use
          * If the value is not set the default value is \Auth0\SDK\Helpers\Cache\NoCacheHandler::class
          *
