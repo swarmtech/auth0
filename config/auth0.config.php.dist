@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * This file must be copied in your config/autoload directory and values must be replaced
+ */
+return [
+    'auth0' => [
+        /**
+         * Handler must be the fqcn of the class to use
+         * If the value is not set the default value is \Auth0\SDK\Helpers\Cache\NoCacheHandler::class
+         *
+         * Possible values:
+         *   - \Auth0\SDK\Helpers\Cache\NoCacheHandler::class
+         *   - \Auth0\SDK\Helpers\Cache\FileSystemCacheHandler::class
+         *   - \Swarmtech\Auth0\RedisCacheHandler::class
+         */
+        'cache' => [
+            'handler' => \Swarmtech\Auth0\RedisCacheHandler::class
+        ]
+    ],
+    /**
+     * If handler is of type  \Swarmtech\Auth0\RedisCacheHandler::class you must define a redis configuration
+     * with key name jwk-fetcher-cache as follow
+     */
+    'redis' => [
+        'jwk-fetcher-cache' => [
+            'host' => 'redis.exemple.com',
+            'port' => 6379
+        ]
+    ]
+];
