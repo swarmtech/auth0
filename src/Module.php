@@ -9,6 +9,7 @@ use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
 
 /**
  * Class Module
+ *
  * @package Swarmtech\Auth0
  */
 final class Module
@@ -29,6 +30,7 @@ final class Module
             function ($mvcEvent) use ($container) {
                 $listener = $container->get(DefaultAuthenticationListener::class);
                 $adapter = $container->get(AuthenticationAdapter::class);
+
                 $listener->attach($adapter);
             },
             1000

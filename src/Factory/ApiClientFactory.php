@@ -34,7 +34,7 @@ final class ApiClientFactory
             'domain' => $domain,
             'guzzleOptions' => [
                 'headers' => [
-                    'Authorization' => 'Bearer'. $accessToken
+                    'Authorization' => 'Bearer '. $accessToken
                 ]
             ]
         ]);

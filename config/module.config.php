@@ -29,16 +29,28 @@ use Auth0\SDK\Helpers\Cache\CacheHandler;
 use Auth0\SDK\Helpers\JWKFetcher;
 use Auth0\SDK\JWTVerifier;
 use Predis\Client;
+use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
 use Swarmtech\Auth0\Factory\ApiClientFactory;
 use Swarmtech\Auth0\Factory\AuthenticationFactory;
 use Swarmtech\Auth0\Factory\CacheHandlerFactory;
 use Swarmtech\Auth0\Factory\JWTVerifierFactory;
 use Swarmtech\Auth0\Factory\RedisClientFactory;
+use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
+use Swarmtech\Auth0\MvcAuth\Factory\AuthenticationDelegatorFactory;
+use Swarmtech\Auth0\MvcAuth\Listener\UnauthenticatedListener;
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Storage\NonPersistent;
 use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
 use Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
+use Zend\ServiceManager\Factory\InvokableFactory;
+use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
 
 return [
     'service_manager' => [
+        'aliases' => [
+            \ZF\Apigility\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
+            'authentication' => AuthenticationService::class
+        ],
         'factories' => [
             /** Auth0 */
             Authentication::class => AuthenticationFactory::class,
@@ -72,13 +84,44 @@ return [
             /** Auth0 CacheHandler */
             CacheHandler::class => CacheHandlerFactory::class,
 
+            /** MvcAuth */
+            AuthenticationService::class => ConfigAbstractFactory::class,
+            UnauthenticatedListener::class => InvokableFactory::class,
+            AuthenticationAdapter::class => ConfigAbstractFactory::class,
+            JWTVerifierAdapter::class => ConfigAbstractFactory::class,
+
             /** Redis */
             Client::class => RedisClientFactory::class,
+        ],
+        'delegators' => [
+            DefaultAuthenticationListener::class => [
+                AuthenticationDelegatorFactory::class
+            ]
         ]
     ],
     ConfigAbstractFactory::class => [
+        JWTVerifierAdapter::class => [
+            JWTVerifier::class
+        ],
+        AuthenticationAdapter::class => [
+            JWTVerifierAdapter::class,
+            AuthenticationService::class
+        ],
         JWKFetcher::class => [
             CacheHandler::class
+        ],
+        AuthenticationService::class => [
+            NonPersistent::class,
+            JWTVerifierAdapter::class
+        ]
+    ],
+    'zf-mvc-auth' => [
+        'authentication' => [
+            'adapters' => [
+                'auth0' => [
+                    'adapter' => AuthenticationAdapter::class
+                ]
+            ]
         ]
     ]
 ];
