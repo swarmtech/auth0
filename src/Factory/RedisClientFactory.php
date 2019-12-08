@@ -16,9 +16,9 @@ final class RedisClientFactory
     public function __invoke(ContainerInterface $container)
     {
         $globalConfig = $container->get('config');
-        $config = $globalConfig['redis']['auth0-jwk-fetcher-cache'];
 
-        $alias = 'jwk-fetcher-cache';
+        $alias = 'auth0-jwk-fetcher-cache';
+        $config = $globalConfig['redis'][$alias];
         $host = $config['host'];
         $port = $config['port'];
 
