@@ -5,6 +5,16 @@ declare(strict_types=1);
  * This file must be copied in your config/autoload directory and values must be replaced
  */
 return [
+    'zf-mvc-auth' => [
+        'authentication' => [
+            /**
+             * Namespace of your Apigility
+             */
+            'map' => [
+                'StayJs\\V1' => 'auth0'
+            ]
+        ]
+    ],
     'auth0' => [
         /**
          * Client configuration to access to auth0 api. This API is use to get data like users, roles, etc..
@@ -27,18 +37,18 @@ return [
             /**
              * The client id of this application available on auth0
              */
-            'client_id' => 'yeQPddExempleExempleExempleExemple',
+            'client_id' => 'yeQPddExampleExampleExampleExample',
             /**
              * Client secret of this application available on auth0
              */
-            'client_secret' => 'TWpGBy1op68wdrExempleExempleExempleExempleExempleExempleExempleExempleExemple',
+            'client_secret' => 'TWpGBy1op68wdrExampleExampleExampleExampleExampleExampleExampleExampleExample',
         ],
         'jwt-verifier' => [
             /**
              * Valid audience is the client IDs of your apps about to consume your application
              */
             'valid_audiences' => [
-                'ClbLQoTtQmBCYFfBdnfzcqExemple'
+                'ClbLQoTtQmBCYFfBdnfzcqExample'
             ],
             /**
              * Authorized issuer is the application which you authorized to issue JWT
@@ -62,13 +72,14 @@ return [
             'handler' => \Swarmtech\Auth0\RedisCacheHandler::class
         ]
     ],
+
     /**
      * If handler is of type  \Swarmtech\Auth0\RedisCacheHandler::class you must define a redis configuration
      * with key name jwk-fetcher-cache as follow
      */
     'redis' => [
-        'jwk-fetcher-cache' => [
-            'host' => 'redis.exemple.com',
+        'auth0-jwk-fetcher-cache' => [
+            'host' => 'redis.example.com',
             'port' => 6379
         ]
     ]
