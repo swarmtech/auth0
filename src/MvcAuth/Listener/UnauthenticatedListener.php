@@ -30,10 +30,9 @@ class UnauthenticatedListener
 
         $mvcEvent = $mvcAuthEvent->getMvcEvent();
         $messages = $authResult->getMessages();
-
-        var_dump($messages); exit;
-
-        $response = new ApiProblemResponse(new ApiProblem(401, $messages));
+        $message = array_shift($messages);
+        $apiProblem = new ApiProblem(401, $message);
+        $response = new ApiProblemResponse($apiProblem);
         $mvcEvent->setResponse($response);
 
         return $response;
