@@ -42,6 +42,7 @@ class JWTVerifierAdapter implements AdapterInterface
 
     /**
      * @param JWTVerifier $jwtVerifier
+     * @param Users $userResource
      */
     public function __construct(JWTVerifier $jwtVerifier)
     {
@@ -83,10 +84,9 @@ class JWTVerifierAdapter implements AdapterInterface
             ]);
         }
 
-        $identity = new Auth0Identity($decodedToken);
-        $result = new Result(Result::SUCCESS, $identity);
+        $identity = $this->getAuth0IdentityFromDecodedToken($decodedToken);
 
-        return $result;
+        return new Result(Result::SUCCESS, $identity);
     }
 
     public function setRequest(Request $request)
@@ -97,5 +97,22 @@ class JWTVerifierAdapter implements AdapterInterface
     public function setResponse(Response $response)
     {
         $this->response = $response;
+    }
+
+    private function getAuth0IdentityFromDecodedToken($decodedToken): Auth0Identity
+    {
+        $email = null;
+        if ($decodedToken->email_verified) {
+            $email = $decodedToken->email;
+        }
+
+        return new Auth0Identity(
+            $decodedToken->sub,
+            $decodedToken->given_name,
+            $decodedToken->name,
+            $decodedToken->picture,
+            $decodedToken->locale,
+            $email
+        );
     }
 }

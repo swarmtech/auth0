@@ -101,7 +101,8 @@ return [
     ],
     ConfigAbstractFactory::class => [
         JWTVerifierAdapter::class => [
-            JWTVerifier::class
+            JWTVerifier::class,
+            Users::class
         ],
         AuthenticationAdapter::class => [
             JWTVerifierAdapter::class,
