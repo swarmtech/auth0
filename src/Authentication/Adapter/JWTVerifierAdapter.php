@@ -106,12 +106,18 @@ class JWTVerifierAdapter implements AdapterInterface
             $email = $decodedToken->email;
         }
 
+        $givenName = null;
+        if (isset($decodedToken->given_name)) {
+            $givenName = $decodedToken->given_name;
+        }
+
         return new Auth0Identity(
             $decodedToken->sub,
-            $decodedToken->given_name,
             $decodedToken->name,
             $decodedToken->picture,
             $decodedToken->locale,
+            $decodedToken->nickname,
+            $givenName,
             $email
         );
     }

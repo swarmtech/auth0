@@ -12,33 +12,38 @@ final class Auth0Identity extends Role implements IdentityInterface
     const DEFAULT_ROLE = 'default';
 
     private $id;
-    private $firstName;
     private $fullName;
     private $picture;
     private $locale;
+    private $nickname;
+    private $firstName;
     private $email;
 
     /**
      * @param string $id
-     * @param string $firstName
      * @param string $fullName
      * @param string $picture
      * @param string $locale
+     * @param string $nickname
+     * @param string $firstName
      * @param string|null $email
      */
     public function __construct(
         string $id,
-        string $firstName,
         string $fullName,
         string $picture,
         string $locale,
+        string $nickname,
+        string $firstName = null,
         string $email = null
-    ) {
+    )
+    {
         $this->id = $id;
-        $this->firstName = $firstName;
         $this->fullName = $fullName;
         $this->picture = $picture;
         $this->locale = $locale;
+        $this->nickname = $nickname;
+        $this->firstName = $firstName;
         $this->email = $email;
 
         parent::__construct(self::DEFAULT_ROLE);
@@ -59,11 +64,6 @@ final class Auth0Identity extends Role implements IdentityInterface
         return $this->id;
     }
 
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
     public function getFullName(): string
     {
         return $this->fullName;
@@ -77,6 +77,16 @@ final class Auth0Identity extends Role implements IdentityInterface
     public function getLocale(): string
     {
         return $this->locale;
+    }
+
+    public function getNickname(): string
+    {
+        return $this->nickname;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
     }
 
     public function getEmail(): ?string
