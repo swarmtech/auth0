@@ -32,8 +32,8 @@ final class Auth0Identity extends Role implements IdentityInterface
         string $id,
         string $fullName,
         string $picture,
-        string $locale,
         string $nickname,
+        string $locale = null,
         string $firstName = null,
         string $email = null
     )
@@ -41,8 +41,8 @@ final class Auth0Identity extends Role implements IdentityInterface
         $this->id = $id;
         $this->fullName = $fullName;
         $this->picture = $picture;
-        $this->locale = $locale;
         $this->nickname = $nickname;
+        $this->locale = $locale;
         $this->firstName = $firstName;
         $this->email = $email;
 
@@ -74,7 +74,7 @@ final class Auth0Identity extends Role implements IdentityInterface
         return $this->picture;
     }
 
-    public function getLocale(): string
+    public function getLocale():?  string
     {
         return $this->locale;
     }
