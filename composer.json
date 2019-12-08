@@ -2,14 +2,21 @@
   "name": "swarmtech/auth0",
   "description": "Swarmtech Auth0",
   "homepage": "https://www.swarmtech.fr",
-  "license": "proprietary",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gary Gitton",
+      "email": "gary@swarmtech.fr",
+      "homepage": "https://www.swarmtech.fr"
+    }
+  ],
   "require": {
     "php": ">=7.2",
     "predis/predis": "^1.1"
   },
   "autoload": {
     "psr-4": {
-      "Swarmtech\\Auth0\\": "src/"
+      "Swarmtech\\Auth0\\": "src/",
     }
   }
 }
