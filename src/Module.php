@@ -5,7 +5,9 @@ namespace Swarmtech\Auth0;
 
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
 use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
 use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
+
 
 /**
  * Class Module
@@ -16,7 +18,12 @@ final class Module
 {
     public function getConfig(): array
     {
-        return include __DIR__ . '/../config/module.config.php';
+        $provider = new ConfigProvider();
+
+        return [
+            'service_manager' => $provider->getDependencyConfig(),
+            ConfigAbstractFactory::class => $provider->getConfigAbstractFactoryConfig(),
+        ];
     }
 
     public function onBootstrap(MvcEvent $mvcEvent)

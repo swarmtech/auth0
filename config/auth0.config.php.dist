@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -7,6 +8,14 @@ declare(strict_types=1);
 return [
     'zf-mvc-auth' => [
         'authentication' => [
+            'adapters' => [
+                /**
+                 * Name of the adapter with its fqcn
+                 */
+                'auth0' => [
+                    'adapter' => \Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter::class
+                ]
+            ]
             /**
              * Namespace of your Apigility
              */
