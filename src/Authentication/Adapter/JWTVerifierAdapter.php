@@ -10,11 +10,10 @@ use Auth0\SDK\Exception\InvalidTokenException;
 use Auth0\SDK\JWTVerifier;
 use Exception;
 use Swarmtech\Auth0\MvcAuth\Identity\Auth0Identity;
-use Zend\Authentication\Adapter\AdapterInterface;
-use Zend\Authentication\Result;
-use Zend\Http\Request;
-use Zend\Http\Response;
-
+use Laminas\Authentication\Adapter\AdapterInterface;
+use Laminas\Authentication\Result;
+use Laminas\Http\Request;
+use Laminas\Http\Response;
 
 /**
  * Class JWTVerifierAdapter

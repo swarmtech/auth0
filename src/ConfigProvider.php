@@ -38,12 +38,12 @@ use Swarmtech\Auth0\Factory\RedisClientFactory;
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
 use Swarmtech\Auth0\MvcAuth\Factory\AuthenticationDelegatorFactory;
 use Swarmtech\Auth0\MvcAuth\Listener\UnauthenticatedListener;
-use Zend\Authentication\AuthenticationService;
-use Zend\Authentication\Storage\NonPersistent;
-use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
-use Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
-use Zend\ServiceManager\Factory\InvokableFactory;
-use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\Authentication\Storage\NonPersistent;
+use Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory;
+use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
 
 final class ConfigProvider
 {
@@ -60,7 +60,7 @@ final class ConfigProvider
         return [
             'factories' => [
                 'aliases' => [
-                    \ZF\Apigility\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
+                    \Laminas\ApiTools\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
                     'authentication' => AuthenticationService::class
                 ],
                 'factories' => [
@@ -135,7 +135,7 @@ final class ConfigProvider
         ];
     }
 
-    public function getZfMvcAuthConfig(): array
+    public function getLaminasAuthenticationConfig(): array
     {
         return [
             'authentication' => [

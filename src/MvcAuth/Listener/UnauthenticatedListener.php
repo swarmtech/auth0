@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\MvcAuth\Listener;
 
-use ZF\ApiProblem\ApiProblem;
-use ZF\ApiProblem\ApiProblemResponse;
-use ZF\MvcAuth\MvcAuthEvent;
+use Laminas\ApiTools\ApiProblem\ApiProblem;
+use Laminas\ApiTools\ApiProblem\ApiProblemResponse;
+use Laminas\ApiTools\MvcAuth\MvcAuthEvent;
 
 class UnauthenticatedListener
 {

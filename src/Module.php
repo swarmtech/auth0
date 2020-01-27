@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Swarmtech\Auth0;
 
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
-use Zend\Mvc\MvcEvent;
-use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
-use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
+use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory;
+use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
 
 
 /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\MvcAuth\Identity;
 
-use Zend\Permissions\Rbac\Role;
-use ZF\MvcAuth\Identity\IdentityInterface;
+use Laminas\Permissions\Rbac\Role;
+use Laminas\ApiTools\MvcAuth\Identity\IdentityInterface;
 
 final class Auth0Identity extends Role implements IdentityInterface
 {

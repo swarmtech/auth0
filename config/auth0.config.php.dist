@@ -6,7 +6,7 @@ declare(strict_types=1);
  * This file must be copied in your config/autoload directory and values must be replaced
  */
 return [
-    'zf-mvc-auth' => [
+    'api-tools-mvc-auth' => [
         'authentication' => [
             'adapters' => [
                 /**

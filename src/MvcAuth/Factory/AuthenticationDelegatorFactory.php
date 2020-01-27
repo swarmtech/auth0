@@ -6,7 +6,7 @@ namespace Swarmtech\Auth0\MvcAuth\Factory;
 
 use Interop\Container\ContainerInterface;
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
-use Zend\ServiceManager\Factory\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 
 class AuthenticationDelegatorFactory implements DelegatorFactoryInterface
 {

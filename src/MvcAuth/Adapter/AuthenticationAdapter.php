@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Swarmtech\Auth0\MvcAuth\Adapter;
 
 use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
-use Zend\Http\Request;
-use Zend\Http\Response;
-use ZF\MvcAuth\Identity\GuestIdentity;
-use ZF\MvcAuth\Identity\IdentityInterface;
-use ZF\MvcAuth\MvcAuthEvent;
-use ZF\MvcAuth\Authentication\AbstractAdapter;
-use Zend\Authentication\AuthenticationServiceInterface;
+use Laminas\Http\Request;
+use Laminas\Http\Response;
+use Laminas\ApiTools\MvcAuth\Identity\GuestIdentity;
+use Laminas\ApiTools\MvcAuth\Identity\IdentityInterface;
+use Laminas\ApiTools\MvcAuth\MvcAuthEvent;
+use Laminas\ApiTools\MvcAuth\Authentication\AbstractAdapter;
+use Laminas\Authentication\AuthenticationServiceInterface;
 
 /**
  * Class AuthenticationAdapter
