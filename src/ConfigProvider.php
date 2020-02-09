@@ -51,7 +51,8 @@ final class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencyConfig(),
-            ConfigAbstractFactory::class => $this->getConfigAbstractFactoryConfig()
+            ConfigAbstractFactory::class => $this->getConfigAbstractFactoryConfig(),
+            'api-tools-mvc-auth' => $this->getApiToolsMvcAuthConfig()
         ];
     }
 
@@ -135,7 +136,7 @@ final class ConfigProvider
         ];
     }
 
-    public function getLaminasAuthenticationConfig(): array
+    public function getApiToolsMvcAuthConfig(): array
     {
         return [
             'authentication' => [

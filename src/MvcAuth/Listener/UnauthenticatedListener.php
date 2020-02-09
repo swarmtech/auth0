@@ -8,7 +8,11 @@ use Laminas\ApiTools\ApiProblem\ApiProblem;
 use Laminas\ApiTools\ApiProblem\ApiProblemResponse;
 use Laminas\ApiTools\MvcAuth\MvcAuthEvent;
 
-class UnauthenticatedListener
+/**
+ * Class UnauthenticatedListener
+ * @package Swarmtech\Auth0\MvcAuth\Listener
+ */
+final class UnauthenticatedListener
 {
     /**
      * Determine if we have an authentication failure, and, if so, return a 401 response

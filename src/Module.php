@@ -24,6 +24,7 @@ final class Module
         return [
             'service_manager' => $provider->getDependencyConfig(),
             ConfigAbstractFactory::class => $provider->getConfigAbstractFactoryConfig(),
+            'api-tools-mvc-auth' => $provider->getApiToolsMvcAuthConfig()
         ];
     }
 

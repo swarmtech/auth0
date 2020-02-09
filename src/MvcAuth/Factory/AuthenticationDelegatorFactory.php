@@ -8,7 +8,11 @@ use Interop\Container\ContainerInterface;
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 
-class AuthenticationDelegatorFactory implements DelegatorFactoryInterface
+/**
+ * Class AuthenticationDelegatorFactory
+ * @package Swarmtech\Auth0\MvcAuth\Factory
+ */
+final class AuthenticationDelegatorFactory implements DelegatorFactoryInterface
 {
     public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
     {

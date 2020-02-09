@@ -8,14 +8,6 @@ declare(strict_types=1);
 return [
     'api-tools-mvc-auth' => [
         'authentication' => [
-            'adapters' => [
-                /**
-                 * Name of the adapter with its fqcn
-                 */
-                'auth0' => [
-                    'adapter' => \Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter::class
-                ]
-            ]
             /**
              * Namespace of your Apigility
              */

@@ -7,6 +7,10 @@ namespace Swarmtech\Auth0\MvcAuth\Identity;
 use Laminas\Permissions\Rbac\Role;
 use Laminas\ApiTools\MvcAuth\Identity\IdentityInterface;
 
+/**
+ * Class Auth0Identity
+ * @package Swarmtech\Auth0\MvcAuth\Identity
+ */
 final class Auth0Identity extends Role implements IdentityInterface
 {
     const DEFAULT_ROLE = 'default';
