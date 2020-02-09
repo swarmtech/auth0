@@ -25,15 +25,14 @@ use Auth0\SDK\API\Management\Tickets;
 use Auth0\SDK\API\Management\UserBlocks;
 use Auth0\SDK\API\Management\Users;
 use Auth0\SDK\API\Management\UsersByEmail;
-use Auth0\SDK\Helpers\Cache\CacheHandler;
 use Auth0\SDK\Helpers\JWKFetcher;
-use Auth0\SDK\JWTVerifier;
+use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
+use Auth0\SDK\Helpers\Tokens\SignatureVerifier;
 use Predis\Client;
-use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
+use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
 use Swarmtech\Auth0\Factory\ApiClientFactory;
 use Swarmtech\Auth0\Factory\AuthenticationFactory;
-use Swarmtech\Auth0\Factory\CacheHandlerFactory;
-use Swarmtech\Auth0\Factory\JWTVerifierFactory;
+use Swarmtech\Auth0\Factory\IdTokenVerifierFactory;
 use Swarmtech\Auth0\Factory\RedisClientFactory;
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
 use Swarmtech\Auth0\MvcAuth\Factory\AuthenticationDelegatorFactory;
@@ -70,8 +69,9 @@ final class ConfigProvider
                     ApiClient::class => ApiClientFactory::class,
 
                     /** Auth0 JWT  */
-                    JWTVerifier::class => JWTVerifierFactory::class,
+                    IdTokenVerifier::class => IdTokenVerifierFactory::class,
                     JWKFetcher::class => ConfigAbstractFactory::class,
+                    SignatureVerifier::class => ConfigAbstractFactory::class,
 
                     /** Auth0 Resource */
                     Blacklists::class => ReflectionBasedAbstractFactory::class,
@@ -94,14 +94,10 @@ final class ConfigProvider
                     Users::class => ReflectionBasedAbstractFactory::class,
                     UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
-                    /** Auth0 CacheHandler */
-                    CacheHandler::class => CacheHandlerFactory::class,
-
                     /** MvcAuth */
                     AuthenticationService::class => ConfigAbstractFactory::class,
                     UnauthenticatedListener::class => InvokableFactory::class,
                     AuthenticationAdapter::class => ConfigAbstractFactory::class,
-                    JWTVerifierAdapter::class => ConfigAbstractFactory::class,
 
                     /** Redis */
                     Client::class => RedisClientFactory::class,
@@ -118,20 +114,16 @@ final class ConfigProvider
     public function getConfigAbstractFactoryConfig(): array
     {
         return [
-            JWTVerifierAdapter::class => [
-                JWTVerifier::class,
-                Users::class
-            ],
             AuthenticationAdapter::class => [
-                JWTVerifierAdapter::class,
+                IdTokenVerifierAdapter::class,
                 AuthenticationService::class
-            ],
-            JWKFetcher::class => [
-                CacheHandler::class
             ],
             AuthenticationService::class => [
                 NonPersistent::class,
-                JWTVerifierAdapter::class
+                IdTokenVerifierAdapter::class
+            ],
+            SignatureVerifier::class => [
+                'RS256'
             ]
         ];
     }

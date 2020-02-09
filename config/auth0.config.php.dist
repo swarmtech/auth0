@@ -44,21 +44,17 @@ return [
              */
             'client_secret' => 'TWpGBy1op68wdrExampleExampleExampleExampleExampleExampleExampleExampleExample',
         ],
-        'jwt-verifier' => [
-            /**
-             * Valid audience is the client IDs of your apps about to consume your application
-             */
-            'valid_audiences' => [
-                'ClbLQoTtQmBCYFfBdnfzcqExample'
-            ],
+        'id-token-verifier' => [
             /**
              * Authorized issuer is the application which you authorized to issue JWT
              * On auth0 that the name of your tenant something like
              * https://dev-a-poifd1.eu.auth0.com/
              */
-            'authorized_issuers' => [
-                'https://your-auth0-tenant.eu.auth0.com/'
-            ]
+            'issuer' => 'https://your-auth0-tenant.eu.auth0.com/',
+            /**
+             * Valid audience is the client IDs of your apps about to consume your application
+             */
+            'audience' => 'ClbLQoTtQmBCYFfBdnfzcqExample'
         ],
         /**
          * Handler must be the fqcn of the class to use

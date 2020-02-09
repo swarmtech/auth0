@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\Factory;
 
-use Auth0\SDK\Helpers\Cache\FileSystemCacheHandler;
 use Auth0\SDK\Helpers\Cache\NoCacheHandler;
 use Predis\Client;
 use Psr\Container\ContainerInterface;
@@ -30,10 +29,6 @@ final class CacheHandlerFactory
             $client = $container->get(Client::class);
 
             return new RedisCacheHandler($client);
-        }
-
-        if ($handler === FileSystemCacheHandler::class) {
-            return new FileSystemCacheHandler();
         }
 
         return new NoCacheHandler();

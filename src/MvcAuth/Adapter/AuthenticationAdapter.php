@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\MvcAuth\Adapter;
 
+use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
 use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
 use Laminas\Http\Request;
 use Laminas\Http\Response;
@@ -35,19 +36,19 @@ class AuthenticationAdapter extends AbstractAdapter
     private $authenticationService;
 
     /**
-     * @var JWTVerifierAdapter
+     * @var IdTokenVerifierAdapter
      */
-    private $jwtVerifierAdapter;
+    private $IdTokenVerifierAdapter;
 
     /**
-     * @param JWTVerifierAdapter $jwtVerifierAdapter
+     * @param IdTokenVerifierAdapter $idTokenVerifierAdapter
      * @param AuthenticationServiceInterface $authenticationService
      */
     public function __construct(
-        JWTVerifierAdapter $jwtVerifierAdapter,
+        IdTokenVerifierAdapter $idTokenVerifierAdapter,
         AuthenticationServiceInterface $authenticationService
     ) {
-        $this->jwtVerifierAdapter = $jwtVerifierAdapter;
+        $this->IdTokenVerifierAdapter = $idTokenVerifierAdapter;
         $this->authenticationService = $authenticationService;
     }
 
@@ -98,8 +99,8 @@ class AuthenticationAdapter extends AbstractAdapter
             return new GuestIdentity();
         }
 
-        $this->jwtVerifierAdapter->setRequest($request);
-        $this->jwtVerifierAdapter->setResponse($response);
+        $this->IdTokenVerifierAdapter->setRequest($request);
+        $this->IdTokenVerifierAdapter->setResponse($response);
 
         $result = $this->authenticationService->authenticate();
         $mvcAuthEvent->setAuthenticationResult($result);

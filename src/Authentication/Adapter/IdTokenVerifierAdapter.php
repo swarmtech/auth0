@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\Authentication\Adapter;
 
-use Auth0\SDK\API\Management\Users;
-use Auth0\SDK\Exception\CoreException;
 use Auth0\SDK\Exception\InvalidTokenException;
-use Auth0\SDK\JWTVerifier;
+use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
 use Exception;
 use Swarmtech\Auth0\MvcAuth\Identity\Auth0Identity;
 use Laminas\Authentication\Adapter\AdapterInterface;
@@ -16,18 +14,18 @@ use Laminas\Http\Request;
 use Laminas\Http\Response;
 
 /**
- * Class JWTVerifierAdapter
+ * Class IdTokenVerifierAdapter
  *
- * Authentication Adapter for Auth0 JWT Verifier
+ * Authentication Adapter for Auth0 Id Token Verifier
  *
  * @package Swarmtech\Auth0\Authentication\Adapter
  */
-class JWTVerifierAdapter implements AdapterInterface
+final class IdTokenVerifierAdapter implements AdapterInterface
 {
     /**
-     * @var JWTVerifier
+     * @var IdTokenVerifier
      */
-    private $jwtVerifier;
+    private $idTokenVerifier;
 
     /**
      * @var Request
@@ -40,12 +38,11 @@ class JWTVerifierAdapter implements AdapterInterface
     private $response;
 
     /**
-     * @param JWTVerifier $jwtVerifier
-     * @param Users $userResource
+     * @param IdTokenVerifier $idTokenVerifier
      */
-    public function __construct(JWTVerifier $jwtVerifier)
+    public function __construct(IdTokenVerifier $idTokenVerifier)
     {
-        $this->jwtVerifier = $jwtVerifier;
+        $this->idTokenVerifier = $idTokenVerifier;
     }
 
     /**
@@ -68,12 +65,8 @@ class JWTVerifierAdapter implements AdapterInterface
         }
 
         try {
-            $decodedToken = $this->jwtVerifier->verifyAndDecode($token);
+            $decodedToken = $this->idTokenVerifier->verify($token);
         } catch (InvalidTokenException $e) {
-            return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, [
-                $e->getMessage()
-            ]);
-        } catch (CoreException $e) {
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, [
                 $e->getMessage()
             ]);
