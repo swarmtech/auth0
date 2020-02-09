@@ -6,9 +6,7 @@ namespace Swarmtech\Auth0;
 
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
 use Laminas\Mvc\MvcEvent;
-use Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory;
 use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
-
 
 /**
  * Class Module
@@ -19,13 +17,7 @@ final class Module
 {
     public function getConfig(): array
     {
-        $provider = new ConfigProvider();
-
-        return [
-            'service_manager' => $provider->getDependencyConfig(),
-            ConfigAbstractFactory::class => $provider->getConfigAbstractFactoryConfig(),
-            'api-tools-mvc-auth' => $provider->getApiToolsMvcAuthConfig()
-        ];
+        return include __DIR__ . '/../config/module.config.php';
     }
 
     public function onBootstrap(MvcEvent $mvcEvent)

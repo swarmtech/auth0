@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Swarmtech\Auth0\MvcAuth\Adapter;
 
 use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
-use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
 use Laminas\Http\Request;
 use Laminas\Http\Response;
 use Laminas\ApiTools\MvcAuth\Identity\GuestIdentity;
