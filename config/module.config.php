@@ -79,6 +79,9 @@ return [
             Users::class => ReflectionBasedAbstractFactory::class,
             UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
+            /** Authentification */
+            IdTokenVerifierAdapter::class => ConfigAbstractFactory::class,
+
             /** MvcAuth */
             AuthenticationService::class => ConfigAbstractFactory::class,
             UnauthenticatedListener::class => InvokableFactory::class,
@@ -94,6 +97,9 @@ return [
         ]
     ],
     ConfigAbstractFactory::class => [
+        IdTokenVerifierAdapter::class => [
+            IdTokenVerifier::class
+        ],
         AuthenticationAdapter::class => [
             IdTokenVerifierAdapter::class,
             AuthenticationService::class
