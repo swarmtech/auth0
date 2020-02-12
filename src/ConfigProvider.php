@@ -60,57 +60,55 @@ final class ConfigProvider
     public function getDependencyConfig(): array
     {
         return [
+            'aliases' => [
+                \Laminas\ApiTools\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
+                'authentication' => AuthenticationService::class
+            ],
             'factories' => [
-                'aliases' => [
-                    \Laminas\ApiTools\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
-                    'authentication' => AuthenticationService::class
-                ],
-                'factories' => [
-                    /** Auth0 */
-                    Authentication::class => AuthenticationFactory::class,
-                    ApiClient::class => ApiClientFactory::class,
+                /** Auth0 */
+                Authentication::class => AuthenticationFactory::class,
+                ApiClient::class => ApiClientFactory::class,
 
-                    /** Auth0 JWT  */
-                    AsymmetricVerifier::class => AsymmetricVerifierFactory::class,
-                    IdTokenVerifier::class => IdTokenVerifierFactory::class,
-                    JWKFetcher::class => ConfigAbstractFactory::class,
+                /** Auth0 JWT  */
+                AsymmetricVerifier::class => AsymmetricVerifierFactory::class,
+                IdTokenVerifier::class => IdTokenVerifierFactory::class,
+                JWKFetcher::class => ConfigAbstractFactory::class,
 
-                    /** Auth0 Resource */
-                    Blacklists::class => ReflectionBasedAbstractFactory::class,
-                    ClientGrants::class => ReflectionBasedAbstractFactory::class,
-                    Clients::class => ReflectionBasedAbstractFactory::class,
-                    Connections::class => ReflectionBasedAbstractFactory::class,
-                    DeviceCredentials::class => ReflectionBasedAbstractFactory::class,
-                    Emails::class => ReflectionBasedAbstractFactory::class,
-                    EmailTemplates::class => ReflectionBasedAbstractFactory::class,
-                    Grants::class => ReflectionBasedAbstractFactory::class,
-                    Jobs::class => ReflectionBasedAbstractFactory::class,
-                    Logs::class => ReflectionBasedAbstractFactory::class,
-                    ResourceServers::class => ReflectionBasedAbstractFactory::class,
-                    Roles::class => ReflectionBasedAbstractFactory::class,
-                    Rules::class => ReflectionBasedAbstractFactory::class,
-                    Stats::class => ReflectionBasedAbstractFactory::class,
-                    Tenants::class => ReflectionBasedAbstractFactory::class,
-                    Tickets::class => ReflectionBasedAbstractFactory::class,
-                    UserBlocks::class => ReflectionBasedAbstractFactory::class,
-                    Users::class => ReflectionBasedAbstractFactory::class,
-                    UsersByEmail::class => ReflectionBasedAbstractFactory::class,
+                /** Auth0 Resource */
+                Blacklists::class => ReflectionBasedAbstractFactory::class,
+                ClientGrants::class => ReflectionBasedAbstractFactory::class,
+                Clients::class => ReflectionBasedAbstractFactory::class,
+                Connections::class => ReflectionBasedAbstractFactory::class,
+                DeviceCredentials::class => ReflectionBasedAbstractFactory::class,
+                Emails::class => ReflectionBasedAbstractFactory::class,
+                EmailTemplates::class => ReflectionBasedAbstractFactory::class,
+                Grants::class => ReflectionBasedAbstractFactory::class,
+                Jobs::class => ReflectionBasedAbstractFactory::class,
+                Logs::class => ReflectionBasedAbstractFactory::class,
+                ResourceServers::class => ReflectionBasedAbstractFactory::class,
+                Roles::class => ReflectionBasedAbstractFactory::class,
+                Rules::class => ReflectionBasedAbstractFactory::class,
+                Stats::class => ReflectionBasedAbstractFactory::class,
+                Tenants::class => ReflectionBasedAbstractFactory::class,
+                Tickets::class => ReflectionBasedAbstractFactory::class,
+                UserBlocks::class => ReflectionBasedAbstractFactory::class,
+                Users::class => ReflectionBasedAbstractFactory::class,
+                UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
-                    /** Authentification */
-                    IdTokenVerifierAdapter::class => ConfigAbstractFactory::class,
+                /** Authentification */
+                IdTokenVerifierAdapter::class => ReflectionBasedAbstractFactory::class,
 
-                    /** MvcAuth */
-                    AuthenticationService::class => ConfigAbstractFactory::class,
-                    UnauthenticatedListener::class => InvokableFactory::class,
-                    AuthenticationAdapter::class => AuthenticationAdapterFactory::class,
+                /** MvcAuth */
+                AuthenticationService::class => ConfigAbstractFactory::class,
+                UnauthenticatedListener::class => InvokableFactory::class,
+                AuthenticationAdapter::class => ReflectionBasedAbstractFactory::class,
 
-                    /** Redis */
-                    Client::class => RedisClientFactory::class,
-                ],
-                'delegators' => [
-                    DefaultAuthenticationListener::class => [
-                        AuthenticationDelegatorFactory::class
-                    ]
+                /** Redis */
+                Client::class => RedisClientFactory::class,
+            ],
+            'delegators' => [
+                DefaultAuthenticationListener::class => [
+                    AuthenticationDelegatorFactory::class
                 ]
             ]
         ];
@@ -122,13 +120,6 @@ final class ConfigProvider
             JWKFetcher::class => [
                 Client::class
             ],
-            IdTokenVerifierAdapter::class => [
-                IdTokenVerifier::class
-            ],
-//            AuthenticationAdapter::class => [
-//                IdTokenVerifierAdapter::class,
-//                AuthenticationService::class
-//            ],
             AuthenticationService::class => [
                 NonPersistent::class,
                 IdTokenVerifierAdapter::class
