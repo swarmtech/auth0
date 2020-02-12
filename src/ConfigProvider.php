@@ -34,6 +34,7 @@ use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
 use Swarmtech\Auth0\Factory\ApiClientFactory;
 use Swarmtech\Auth0\Factory\AsymmetricVerifierFactory;
 use Swarmtech\Auth0\Factory\AuthenticationFactory;
+use Swarmtech\Auth0\Factory\CacheHandlerFactory;
 use Swarmtech\Auth0\Factory\IdTokenVerifierFactory;
 use Swarmtech\Auth0\Factory\RedisClientFactory;
 use Swarmtech\Auth0\MvcAuth\Adapter\AuthenticationAdapter;
@@ -95,6 +96,10 @@ final class ConfigProvider
                 Users::class => ReflectionBasedAbstractFactory::class,
                 UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
+                /** Auth0 CacheHandler */
+//                CacheHandler::class => CacheHandlerFactory::class,
+                'Auth0CacheHandler' => CacheHandlerFactory::class,
+
                 /** Authentification */
                 IdTokenVerifierAdapter::class => ReflectionBasedAbstractFactory::class,
 
@@ -118,7 +123,8 @@ final class ConfigProvider
     {
         return [
             JWKFetcher::class => [
-                Client::class
+                'Auth0CacheHandler'
+//                CacheHandler::class
             ],
             AuthenticationService::class => [
                 NonPersistent::class,
