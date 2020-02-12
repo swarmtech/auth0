@@ -29,6 +29,7 @@ use Auth0\SDK\Helpers\JWKFetcher;
 use Auth0\SDK\Helpers\Tokens\AsymmetricVerifier;
 use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
 use Predis\Client;
+use Swarmtech\Auth0\Authentication\Adapter\Factory\AuthenticationAdapterFactory;
 use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
 use Swarmtech\Auth0\Factory\ApiClientFactory;
 use Swarmtech\Auth0\Factory\AsymmetricVerifierFactory;
@@ -101,7 +102,7 @@ final class ConfigProvider
                     /** MvcAuth */
                     AuthenticationService::class => ConfigAbstractFactory::class,
                     UnauthenticatedListener::class => InvokableFactory::class,
-                    AuthenticationAdapter::class => ConfigAbstractFactory::class,
+                    AuthenticationAdapter::class => AuthenticationAdapterFactory::class,
 
                     /** Redis */
                     Client::class => RedisClientFactory::class,
@@ -124,10 +125,10 @@ final class ConfigProvider
             IdTokenVerifierAdapter::class => [
                 IdTokenVerifier::class
             ],
-            AuthenticationAdapter::class => [
-                IdTokenVerifierAdapter::class,
-                AuthenticationService::class
-            ],
+//            AuthenticationAdapter::class => [
+//                IdTokenVerifierAdapter::class,
+//                AuthenticationService::class
+//            ],
             AuthenticationService::class => [
                 NonPersistent::class,
                 IdTokenVerifierAdapter::class
