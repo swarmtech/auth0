@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Swarmtech\Auth0\Factory;
 
+use Auth0\SDK\Helpers\Tokens\AsymmetricVerifier;
 use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
-use Auth0\SDK\Helpers\Tokens\SignatureVerifier;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -16,7 +16,7 @@ final class IdTokenVerifierFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $signatureVerifier = $container->get(SignatureVerifier::class);
+        $asymmetricVerifier = $container->get(AsymmetricVerifier::class);
 
         $globalConfig = $container->get('config');
         $config = $globalConfig['auth0']['id-token-verifier'];
@@ -27,7 +27,7 @@ final class IdTokenVerifierFactory
         return new IdTokenVerifier(
             $issuer,
             $audience,
-            $signatureVerifier
+            $asymmetricVerifier
         );
     }
 }

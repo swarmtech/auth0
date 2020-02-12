@@ -71,7 +71,7 @@ final class IdTokenVerifierAdapter implements AdapterInterface
                 $e->getMessage()
             ]);
         } catch (Exception $e) {
-            return new Result(0, null, [
+            return new Result(Result::FAILURE, null, [
                 $e->getMessage()
             ]);
         }
