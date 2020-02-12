@@ -101,7 +101,7 @@ final class ConfigProvider
                 'Auth0CacheHandler' => CacheHandlerFactory::class,
 
                 /** Authentification */
-                IdTokenVerifierAdapter::class => ReflectionBasedAbstractFactory::class,
+                IdTokenVerifierAdapter::class => ConfigAbstractFactory::class,
 
                 /** MvcAuth */
                 AuthenticationService::class => ConfigAbstractFactory::class,
@@ -134,6 +134,9 @@ final class ConfigProvider
                 IdTokenVerifierAdapter::class,
                 AuthenticationService::class
             ],
+            IdTokenVerifierAdapter::class => [
+                IdTokenVerifier::class
+            ]
         ];
     }
 
