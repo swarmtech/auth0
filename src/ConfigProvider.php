@@ -129,7 +129,11 @@ final class ConfigProvider
             AuthenticationService::class => [
                 NonPersistent::class,
                 IdTokenVerifierAdapter::class
-            ]
+            ],
+            AuthenticationAdapter::class => [
+                IdTokenVerifierAdapter::class,
+                AuthenticationService::class
+            ],
         ];
     }
 
