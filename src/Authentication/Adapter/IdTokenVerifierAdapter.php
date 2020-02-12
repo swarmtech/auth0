@@ -65,7 +65,8 @@ final class IdTokenVerifierAdapter implements AdapterInterface
         }
 
         try {
-            $decodedToken = $this->idTokenVerifier->verify($token);
+            // TODO: check that's
+            $profile = $this->idTokenVerifier->verify($token);
         } catch (InvalidTokenException $e) {
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, [
                 $e->getMessage()
@@ -76,7 +77,7 @@ final class IdTokenVerifierAdapter implements AdapterInterface
             ]);
         }
 
-        $identity = $this->getAuth0IdentityFromDecodedToken($decodedToken);
+        $identity = $this->getAuth0IdentityFromProfile($profile);
 
         return new Result(Result::SUCCESS, $identity);
     }
@@ -91,28 +92,28 @@ final class IdTokenVerifierAdapter implements AdapterInterface
         $this->response = $response;
     }
 
-    private function getAuth0IdentityFromDecodedToken($decodedToken): Auth0Identity
+    private function getAuth0IdentityFromProfile($profile): Auth0Identity
     {
         $email = null;
-        if ($decodedToken->email_verified) {
-            $email = $decodedToken->email;
+        if ($profile->email_verified) {
+            $email = $profile->email;
         }
 
         $givenName = null;
-        if (isset($decodedToken->given_name)) {
-            $givenName = $decodedToken->given_name;
+        if (isset($profile->given_name)) {
+            $givenName = $profile->given_name;
         }
 
         $locale = null;
-        if (isset($decodedToken->locale)) {
-            $locale = $decodedToken->locale;
+        if (isset($profile->locale)) {
+            $locale = $profile->locale;
         }
 
         return new Auth0Identity(
-            $decodedToken->sub,
-            $decodedToken->name,
-            $decodedToken->picture,
-            $decodedToken->nickname,
+            $profile->sub,
+            $profile->name,
+            $profile->picture,
+            $profile->nickname,
             $locale,
             $givenName,
             $email
