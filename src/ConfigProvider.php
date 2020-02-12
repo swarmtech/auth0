@@ -106,7 +106,7 @@ final class ConfigProvider
                 /** MvcAuth */
                 AuthenticationService::class => ConfigAbstractFactory::class,
                 UnauthenticatedListener::class => InvokableFactory::class,
-                AuthenticationAdapter::class => ReflectionBasedAbstractFactory::class,
+                AuthenticationAdapter::class => ConfigAbstractFactory::class,
 
                 /** Redis */
                 Client::class => RedisClientFactory::class,
