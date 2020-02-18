@@ -29,7 +29,6 @@ use Auth0\SDK\Helpers\JWKFetcher;
 use Auth0\SDK\Helpers\Tokens\AsymmetricVerifier;
 use Auth0\SDK\Helpers\Tokens\IdTokenVerifier;
 use Predis\Client;
-use Swarmtech\Auth0\Authentication\Adapter\Factory\AuthenticationAdapterFactory;
 use Swarmtech\Auth0\Authentication\Adapter\IdTokenVerifierAdapter;
 use Swarmtech\Auth0\Factory\ApiClientFactory;
 use Swarmtech\Auth0\Factory\AsymmetricVerifierFactory;
