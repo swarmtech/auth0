@@ -11,6 +11,7 @@
     }
   ],
   "require": {
+    "php": "^5.6",
     "auth0/auth0-php": "^5.6",
     "zfcampus/zf-mvc-auth": "^1.5"
   },

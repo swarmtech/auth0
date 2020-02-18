@@ -4,14 +4,14 @@ Module to use jwt authentification, api resources and integrate in authenticatio
  / Apigility. 
 
 ## Requirements
-* [PHP](php.net) 7.2+
+* [PHP](php.net) 5.6+
 * [Auth0 PHP](https://github.com/auth0/auth0-PHP) 5.6+
 * [zfcampus/zf-mvc-auth](https://github.com/zfcampus/zf-mvc-auth) 1.5+ 
 
 ## Installation
 1. Installation with composer
 ```bash
-composer require swarmtech/auth0:"^1.0"
+composer require swarmtech/auth0:"dev-feature/compatibility-with-php5.6"
 ```
 
 2. Enable module for Zend Framework / Laminas by adding `Swarmtech\\Auth0` in config/modules.config.php
