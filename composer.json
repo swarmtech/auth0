@@ -11,14 +11,28 @@
     }
   ],
   "require": {
-    "auth0/auth0-php": "^7.0",
+    "php": "^7.1",
+    "auth0/auth0-php": "^7.0"
+  },
+  "require-dev": {
     "laminas-api-tools/api-tools-mvc-auth": "^1.5",
+    "laminas/laminas-authentication": "^2.7",
+    "predis/predis": "^1.1",
+    "phpunit/phpunit": "^5.7 ||  ^9.0"
+  },
+  "suggest": {
+    "laminas-api-tools/api-tools-mvc-auth": "^1.5 ",
     "laminas/laminas-authentication": "^2.7",
     "predis/predis": "^1.1"
   },
   "autoload": {
     "psr-4": {
       "Swarmtech\\Auth0\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SwarmtechTest\\Auth0\\": "test/"
     }
   }
 }
