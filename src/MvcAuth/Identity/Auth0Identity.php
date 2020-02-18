@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Swarmtech\Auth0\MvcAuth\Identity;
 
 use Zend\Permissions\Rbac\Role;
@@ -49,47 +47,47 @@ final class Auth0Identity extends Role implements IdentityInterface
         parent::__construct(self::DEFAULT_ROLE);
     }
 
-    public function getRoleId(): string
+    public function getRoleId()
     {
         return $this->name;
     }
 
-    public function getAuthenticationIdentity(): string
+    public function getAuthenticationIdentity()
     {
         return $this->id;
     }
 
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getFullName(): string
+    public function getFullName()
     {
         return $this->fullName;
     }
 
-    public function getPicture(): string
+    public function getPicture()
     {
         return $this->picture;
     }
 
-    public function getLocale():?  string
+    public function getLocale()
     {
         return $this->locale;
     }
 
-    public function getNickname(): string
+    public function getNickname()
     {
         return $this->nickname;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName()
     {
         return $this->firstName;
     }
 
-    public function getEmail(): ?string
+    public function getEmail()
     {
         return $this->email;
     }

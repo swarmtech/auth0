@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Swarmtech\Auth0\MvcAuth\Factory;
 
 use Interop\Container\ContainerInterface;

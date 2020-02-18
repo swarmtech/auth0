@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Swarmtech\Auth0;
 
 use Auth0\SDK\API\Authentication;
@@ -47,7 +45,7 @@ use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
 
 final class ConfigProvider
 {
-    public function __invoke(): array
+    public function __invoke()
     {
         return [
             'dependencies' => $this->getDependencyConfig(),
@@ -55,7 +53,7 @@ final class ConfigProvider
         ];
     }
 
-    public function getDependencyConfig(): array
+    public function getDependencyConfig()
     {
         return [
             'factories' => [
@@ -114,7 +112,7 @@ final class ConfigProvider
         ];
     }
 
-    public function getConfigAbstractFactoryConfig(): array
+    public function getConfigAbstractFactoryConfig()
     {
         return [
             JWTVerifierAdapter::class => [
@@ -135,7 +133,7 @@ final class ConfigProvider
         ];
     }
 
-    public function getZfMvcAuthConfig(): array
+    public function getZfMvcAuthConfig()
     {
         return [
             'authentication' => [

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Swarmtech\Auth0\Authentication\Adapter;
 
 use Auth0\SDK\API\Management\Users;
@@ -14,7 +12,6 @@ use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Zend\Http\Request;
 use Zend\Http\Response;
-
 
 /**
  * Class JWTVerifierAdapter
@@ -99,7 +96,7 @@ class JWTVerifierAdapter implements AdapterInterface
         $this->response = $response;
     }
 
-    private function getAuth0IdentityFromDecodedToken($decodedToken): Auth0Identity
+    private function getAuth0IdentityFromDecodedToken($decodedToken)
     {
         $email = null;
         if ($decodedToken->email_verified) {

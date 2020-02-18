@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Swarmtech\Auth0\MvcAuth\Adapter;
 
 use Swarmtech\Auth0\Authentication\Adapter\JWTVerifierAdapter;
@@ -56,7 +54,7 @@ class AuthenticationAdapter extends AbstractAdapter
      *
      * @return array Array of types this adapter can handle.
      */
-    public function provides(): array
+    public function provides()
     {
         return self::$handledTypes;
     }
@@ -67,7 +65,7 @@ class AuthenticationAdapter extends AbstractAdapter
      * @param string $type
      * @return bool
      */
-    public function matches($type): bool
+    public function matches($type)
     {
         return $type === self::AUTH0;
     }

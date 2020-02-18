@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace Swarmtech\Auth0;
 
@@ -8,7 +7,6 @@ use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory;
 use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
 
-
 /**
  * Class Module
  *
@@ -16,7 +14,7 @@ use ZF\MvcAuth\Authentication\DefaultAuthenticationListener;
  */
 final class Module
 {
-    public function getConfig(): array
+    public function getConfig()
     {
         $provider = new ConfigProvider();
 
