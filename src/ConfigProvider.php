@@ -56,57 +56,55 @@ final class ConfigProvider
     public function getDependencyConfig()
     {
         return [
+            'aliases' => [
+                \ZF\Apigility\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
+                'authentication' => AuthenticationService::class
+            ],
             'factories' => [
-                'aliases' => [
-                    \ZF\Apigility\MvcAuth\UnauthenticatedListener::class => UnauthenticatedListener::class,
-                    'authentication' => AuthenticationService::class
-                ],
-                'factories' => [
-                    /** Auth0 */
-                    Authentication::class => AuthenticationFactory::class,
-                    ApiClient::class => ApiClientFactory::class,
+                /** Auth0 */
+                Authentication::class => AuthenticationFactory::class,
+                ApiClient::class => ApiClientFactory::class,
 
-                    /** Auth0 JWT  */
-                    JWTVerifier::class => JWTVerifierFactory::class,
-                    JWKFetcher::class => ConfigAbstractFactory::class,
+                /** Auth0 JWT  */
+                JWTVerifier::class => JWTVerifierFactory::class,
+                JWKFetcher::class => ConfigAbstractFactory::class,
 
-                    /** Auth0 Resource */
-                    Blacklists::class => ReflectionBasedAbstractFactory::class,
-                    ClientGrants::class => ReflectionBasedAbstractFactory::class,
-                    Clients::class => ReflectionBasedAbstractFactory::class,
-                    Connections::class => ReflectionBasedAbstractFactory::class,
-                    DeviceCredentials::class => ReflectionBasedAbstractFactory::class,
-                    Emails::class => ReflectionBasedAbstractFactory::class,
-                    EmailTemplates::class => ReflectionBasedAbstractFactory::class,
-                    Grants::class => ReflectionBasedAbstractFactory::class,
-                    Jobs::class => ReflectionBasedAbstractFactory::class,
-                    Logs::class => ReflectionBasedAbstractFactory::class,
-                    ResourceServers::class => ReflectionBasedAbstractFactory::class,
-                    Roles::class => ReflectionBasedAbstractFactory::class,
-                    Rules::class => ReflectionBasedAbstractFactory::class,
-                    Stats::class => ReflectionBasedAbstractFactory::class,
-                    Tenants::class => ReflectionBasedAbstractFactory::class,
-                    Tickets::class => ReflectionBasedAbstractFactory::class,
-                    UserBlocks::class => ReflectionBasedAbstractFactory::class,
-                    Users::class => ReflectionBasedAbstractFactory::class,
-                    UsersByEmail::class => ReflectionBasedAbstractFactory::class,
+                /** Auth0 Resource */
+                Blacklists::class => ReflectionBasedAbstractFactory::class,
+                ClientGrants::class => ReflectionBasedAbstractFactory::class,
+                Clients::class => ReflectionBasedAbstractFactory::class,
+                Connections::class => ReflectionBasedAbstractFactory::class,
+                DeviceCredentials::class => ReflectionBasedAbstractFactory::class,
+                Emails::class => ReflectionBasedAbstractFactory::class,
+                EmailTemplates::class => ReflectionBasedAbstractFactory::class,
+                Grants::class => ReflectionBasedAbstractFactory::class,
+                Jobs::class => ReflectionBasedAbstractFactory::class,
+                Logs::class => ReflectionBasedAbstractFactory::class,
+                ResourceServers::class => ReflectionBasedAbstractFactory::class,
+                Roles::class => ReflectionBasedAbstractFactory::class,
+                Rules::class => ReflectionBasedAbstractFactory::class,
+                Stats::class => ReflectionBasedAbstractFactory::class,
+                Tenants::class => ReflectionBasedAbstractFactory::class,
+                Tickets::class => ReflectionBasedAbstractFactory::class,
+                UserBlocks::class => ReflectionBasedAbstractFactory::class,
+                Users::class => ReflectionBasedAbstractFactory::class,
+                UsersByEmail::class => ReflectionBasedAbstractFactory::class,
 
-                    /** Auth0 CacheHandler */
-                    CacheHandler::class => CacheHandlerFactory::class,
+                /** Auth0 CacheHandler */
+                CacheHandler::class => CacheHandlerFactory::class,
 
-                    /** MvcAuth */
-                    AuthenticationService::class => ConfigAbstractFactory::class,
-                    UnauthenticatedListener::class => InvokableFactory::class,
-                    AuthenticationAdapter::class => ConfigAbstractFactory::class,
-                    JWTVerifierAdapter::class => ConfigAbstractFactory::class,
+                /** MvcAuth */
+                AuthenticationService::class => ConfigAbstractFactory::class,
+                UnauthenticatedListener::class => InvokableFactory::class,
+                AuthenticationAdapter::class => ConfigAbstractFactory::class,
+                JWTVerifierAdapter::class => ConfigAbstractFactory::class,
 
-                    /** Redis */
-                    Client::class => RedisClientFactory::class,
-                ],
-                'delegators' => [
-                    DefaultAuthenticationListener::class => [
-                        AuthenticationDelegatorFactory::class
-                    ]
+                /** Redis */
+                Client::class => RedisClientFactory::class,
+            ],
+            'delegators' => [
+                DefaultAuthenticationListener::class => [
+                    AuthenticationDelegatorFactory::class
                 ]
             ]
         ];
