@@ -19,8 +19,8 @@ final class JWTVerifierFactory
         $globalConfig = $container->get('config');
         $auth0Config = $globalConfig['auth0'];
 
-        $validAudiences = explode(',', $auth0Config['valid_audiences']);
-        $authorizedIssuers = $this->getAuthorizedIssuer($auth0Config);
+        $validAudiences = $this->getValidAudiences($auth0Config);
+        $authorizedIssuers = $this->getAuthorizedIssuers($auth0Config);
 
         $config =  [
             'valid_audiences' => $validAudiences,
@@ -34,7 +34,15 @@ final class JWTVerifierFactory
         return new JWTVerifier($config, $jwkFetcher);
     }
 
-    private function getAuthorizedIssuer(array $auth0Config)
+    private function getValidAudiences(array $auth0Config)
+    {
+        $validAudiences = explode(',', $auth0Config['valid_audiences']);
+        $validAudiences[] = $auth0Config['client_id'];
+
+        return array_unique($validAudiences);
+    }
+
+    private function getAuthorizedIssuers(array $auth0Config)
     {
         if (isset($auth0Config['authorized_issuers'])) {
             return explode(',', $auth0Config['authorized_issuers']);
