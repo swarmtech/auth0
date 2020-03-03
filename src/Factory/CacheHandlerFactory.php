@@ -17,12 +17,13 @@ final class CacheHandlerFactory
     public function __invoke(ContainerInterface $container)
     {
         $globalConfig = $container->get('config');
+        $auth0Config = $globalConfig['auth0'];
 
-        if (!isset($globalConfig['auth0']['cache']['handler'])) {
+        if (!isset($auth0Config['cache_handler'])) {
             return new NoCacheHandler();
         }
 
-        $handler = $globalConfig['auth0']['cache']['handler'];
+        $handler = $auth0Config['cache_handler'];
 
         if ($handler === RedisCacheHandler::class) {
             $client = $container->get(Client::class);

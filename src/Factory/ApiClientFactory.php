@@ -14,12 +14,13 @@ final class ApiClientFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $globalConfig = $container->get('config');
-        $config = $globalConfig['auth0']['client'];
-        $domain = $config['domain'];
-
         /** @var Authentication $authentication */
         $authentication = $container->get(Authentication::class);
+
+        $globalConfig = $container->get('config');
+        $auth0Config = $globalConfig['auth0'];
+        $version = $this->getAuth0Version();
+        $domain = 'https://' . $auth0Config['domain'] . '/api/' . $version . '/';
 
         $response = $authentication->client_credentials([
             'audience' => $domain
@@ -32,9 +33,18 @@ final class ApiClientFactory
             'domain' => $domain,
             'guzzleOptions' => [
                 'headers' => [
-                    'Authorization' => 'Bearer '. $accessToken
+                    'Authorization' => 'Bearer ' . $accessToken
                 ]
             ]
         ]);
+    }
+
+    private function getAuth0Version(array $auth0Config)
+    {
+        if (!isset($auth0Config['version'])) {
+            return 'v2';
+        }
+
+        return $auth0Config['version'];
     }
 }

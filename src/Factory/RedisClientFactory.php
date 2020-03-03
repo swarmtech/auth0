@@ -15,13 +15,16 @@ final class RedisClientFactory
     {
         $globalConfig = $container->get('config');
 
-        $alias = 'auth0-jwk-fetcher-cache';
-        $config = $globalConfig['redis'][$alias];
+        if (!isset($globalConfig['redis']['auth0'])) {
+            throw new \InvalidArgumentException('Redis configuration don\'t have auth0 key');
+        }
+
+        $config = $globalConfig['redis']['auth0'];
         $host = $config['host'];
         $port = $config['port'];
 
         return new Client([
-            'alias' => $alias,
+            'alias' => 'auth0',
             'host' => $host,
             'port' => $port
         ]);

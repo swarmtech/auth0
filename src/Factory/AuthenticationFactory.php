@@ -14,11 +14,11 @@ final class AuthenticationFactory
     public function __invoke(ContainerInterface $container)
     {
         $globalConfig = $container->get('config');
-        $config = $globalConfig['auth0']['authentication'];
+        $auth0config = $globalConfig['auth0'];
 
-        $domain = $config['domain'];
-        $clientId = $config['client_id'];
-        $clientSecret = $config['client_secret'];
+        $domain = $auth0config['domain'];
+        $clientId = $auth0config['client_id'];
+        $clientSecret = $auth0config['client_secret'];
 
         return new Authentication($domain, $clientId, $clientSecret);
     }

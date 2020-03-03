@@ -17,21 +17,31 @@ final class JWTVerifierFactory
         $jwkFetcher = $container->get(JWKFetcher::class);
 
         $globalConfig = $container->get('config');
-        $config = $globalConfig['auth0']['jwt-verifier'];
+        $auth0Config = $globalConfig['auth0'];
 
-        $validAudiences = $config['valid_audiences'];
-        $authorizedIssuers = $config['authorized_issuers'];
+        $validAudiences = explode(',', $auth0Config['valid_audiences']);
+        $authorizedIssuers = $this->getAuthorizedIssuer($auth0Config);
 
-        return new JWTVerifier(
-            [
-                'valid_audiences' => $validAudiences,
-                'secret_base64_encoded' => false,
-                'authorized_iss' => $authorizedIssuers,
-                'supported_algs' => [
-                    'RS256'
-                ],
-            ],
-            $jwkFetcher
-        );
+        $config =  [
+            'valid_audiences' => $validAudiences,
+            'secret_base64_encoded' => false,
+            'authorized_iss' => $authorizedIssuers,
+            'supported_algs' => [
+                'RS256'
+            ]
+        ];
+
+        return new JWTVerifier($config, $jwkFetcher);
+    }
+
+    private function getAuthorizedIssuer(array $auth0Config)
+    {
+        if (isset($auth0Config['authorized_issuers'])) {
+            return explode(',', $auth0Config['authorized_issuers']);
+        }
+
+        return [
+            'https://' . $auth0Config['domain'] . '/'
+        ];
     }
 }
