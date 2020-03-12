@@ -19,7 +19,7 @@ final class ApiClientFactory
 
         $globalConfig = $container->get('config');
         $auth0Config = $globalConfig['auth0'];
-        $version = $this->getAuth0Version();
+        $version = $this->getAuth0Version($auth0Config);
         $domain = 'https://' . $auth0Config['domain'] . '/api/' . $version . '/';
 
         $response = $authentication->client_credentials([
